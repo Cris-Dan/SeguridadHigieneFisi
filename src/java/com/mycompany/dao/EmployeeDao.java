@@ -43,6 +43,8 @@ public class EmployeeDao implements Dao<Employee> {
                     employee.setAge(rs.getInt("age"));
                     employee.setGenre(rs.getString("genre"));
                     employee.setHealthCondition(rs.getString("healthCondition"));
+                    employee.setDni(rs.getInt("dni"));
+                    employee.setDireccion(rs.getString("direccion"));
                 }
             } catch (SQLException ex) {
             } finally {
@@ -74,6 +76,8 @@ public class EmployeeDao implements Dao<Employee> {
                     employee.setAge(rs.getInt("age"));
                     employee.setGenre(rs.getString("genre"));
                     employee.setHealthCondition(rs.getString("healthCondition"));
+                    employee.setDni(rs.getInt("dni"));
+                    employee.setDireccion(rs.getString("direccion"));
                     lista.add(employee);
                 }
             } catch (SQLException ex) {
@@ -90,7 +94,7 @@ public class EmployeeDao implements Dao<Employee> {
     @Override
     public void save(Employee t) {
         Connection cn = DBAccess.getInstance().getConnection();
-        String pa = "{call saveEmploye(?,?,?,?,?,?,?)}";
+        String pa = "{call saveEmploye(?,?,?,?,?,?,?,?,?)}";
         if (cn != null) {
             try {
                 CallableStatement cs = cn.prepareCall(pa);
@@ -101,6 +105,8 @@ public class EmployeeDao implements Dao<Employee> {
                 cs.setInt(5, t.getAge());
                 cs.setString(6, t.getGenre());
                 cs.setString(7, t.getHealthCondition());
+                cs.setString(8, String.valueOf(t.getDni()));
+                cs.setString(9, t.getDireccion());
                 cs.executeUpdate();
             } catch (SQLException e) {
 
@@ -116,7 +122,7 @@ public class EmployeeDao implements Dao<Employee> {
     @Override
     public void update(Employee t) {
         Connection cn = DBAccess.getInstance().getConnection();
-        String pa = "{Call updateEmployee(?,?,?,?,?,?,?,?)}";
+        String pa = "{Call updateEmployee(?,?,?,?,?,?,?,?,?,?)}";
         if (cn != null) {
             try {
                 CallableStatement cs = cn.prepareCall(pa);
@@ -128,6 +134,8 @@ public class EmployeeDao implements Dao<Employee> {
                 cs.setInt(6, t.getAge());
                 cs.setString(7, t.getGenre());
                 cs.setString(8, t.getHealthCondition());
+                cs.setString(9, String.valueOf(t.getDni()));
+                cs.setString(10, t.getDireccion());
                 cs.executeUpdate();
             } catch (SQLException e) {
 

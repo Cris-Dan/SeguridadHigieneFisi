@@ -91,4 +91,25 @@ public class AdministratorProxy extends User {
     public void setEmail(String email) {
         this.administrator.setEmail(email);
     }
+
+    @Override
+    public Integer getDni() {
+        return this.administrator.getDni();
+    }
+
+    @Override
+    public void setDni(Integer dni) {
+        this.administrator.setDni(dni);
+    }
+
+    @Override
+    public String getDireccion() {
+        return this.administrator.getDireccion();
+    }
+
+    @Override
+    public void setDireccion(String direccion) {
+        this.administrator.setDireccion(direccion);
+    }
+
 }

@@ -19,8 +19,8 @@ public class Employee extends User {
     public Employee() {
     }
 
-    public Employee(Integer idEmployee, Integer idPerson, String firstname, String lastname, String password, String email, Integer age, String genre, String healthCondition) {
-        super(idPerson, firstname, lastname, password, email);
+    public Employee(Integer idEmployee, Integer age, String genre, String healthCondition, Integer idUser, String firstname, String lastname, String password, String email, Integer dni, String direccion) {
+        super(idUser, firstname, lastname, password, email, dni, direccion);
         this.idEmployee = idEmployee;
         this.age = age;
         this.genre = genre;

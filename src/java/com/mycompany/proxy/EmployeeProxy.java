@@ -114,4 +114,24 @@ public class EmployeeProxy extends User {
     public void setEmail(String email) {
         this.employee.setEmail(email);
     }
+
+    @Override
+    public Integer getDni() {
+        return this.employee.getDni();
+    }
+
+    @Override
+    public void setDni(Integer dni) {
+        this.employee.setDni(dni);
+    }
+
+    @Override
+    public String getDireccion() {
+        return this.employee.getDireccion();
+    }
+
+    @Override
+    public void setDireccion(String direccion) {
+        this.employee.setDireccion(direccion);
+    }
 }

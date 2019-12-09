@@ -5,7 +5,9 @@ create table user(
     firstname varchar(50),
     lastname varchar(50),
     password varchar(50),
-    email varchar(100) unique
+    email varchar(100),
+    dni int,
+    direccion varchar(255)
 );
 
 create table administrator(
@@ -45,7 +47,7 @@ create table incident(
 delimiter //
 create procedure getAdministrator(in inId int)
 begin
-select administrator.id,firstname,lastname,password,email 
+select administrator.id,firstname,lastname,password,email,dni,direccion 
 		from administrator,user 
         where idUser = user.id and administrator.id = inId;
 end
@@ -55,7 +57,7 @@ end
 delimiter //
 create procedure getAllAdministrators()
 begin
-select administrator.id,firstname,lastname,password,email 
+select administrator.id,firstname,lastname,password,email,dni,direccion 
 		from administrator,user 
         where idUser = user.id;
 end
@@ -68,12 +70,15 @@ create procedure saveAdministrator(
 		in inFirstname varchar(50),
         in  inLastname varchar(50),
 		in  inPassword varchar(50),
-        in  inEmail varchar(100))
+        in  inEmail varchar(100),
+        in inDni int,
+        in inDireccion varchar(255)
+        )
 begin
 
 DECLARE idUserTemp INT DEFAULT 0;
 
-insert into user(firstname,lastname,password,email) values(inFirstname,inLastname,inPassword,inEmail);
+insert into user(firstname,lastname,password,email,dni,direccion) values(inFirstname,inLastname,inPassword,inEmail,inDni,inDireccion);
 
 select id from user where user.email=inEmail into idUserTemp;
 
@@ -89,7 +94,9 @@ create procedure updateAdministrator(
 		in inFirstname varchar(50),
         in  inLastname varchar(50),
 		in  inPassword varchar(50),
-        in  inEmail varchar(100)
+        in  inEmail varchar(100),
+        in inDni int,
+        in inDireccion varchar(255)
 )
 begin
 
@@ -98,7 +105,7 @@ DECLARE idUserTemp INT DEFAULT 0;
 select idUser from administrator where id=inId into idUserTemp;
 
 update user 
-		set firstname = inFirstname, lastname = inLastname, password = inPassword, email = inEmail 
+		set firstname = inFirstname, lastname = inLastname, password = inPassword, email = inEmail, dni = inDni, direccion = inDireccion
         where id = idUserTemp;
 end
 // delimiter ;
@@ -132,7 +139,7 @@ end
 delimiter //
 create procedure getEmployee(in inId int)
 begin
-select employee.id,firstname,lastname,password,email,age,genre,healthCondition 
+select employee.id,firstname,lastname,password,email,age,genre,healthCondition,dni,direccion 
 		from employee,user 
         where idUser = user.id and employee.id = inId;
 end
@@ -142,7 +149,7 @@ end
 delimiter //
 create procedure getAllEmployees()
 begin
-select employee.id,firstname,lastname,password,email,age,genre,healthCondition 
+select employee.id,firstname,lastname,password,email,age,genre,healthCondition,dni,direccion
 		from employee,user 
         where idUser = user.id;
 end
@@ -158,13 +165,15 @@ create procedure saveEmployee(
         in  inEmail varchar(100),
         in inAge int,
 		in inGenre varchar(50),
-		in inHealthCondition varchar(200)
+		in inHealthCondition varchar(200),
+        in inDni int,
+        in inDireccion varchar(255)
         )
 begin
 
 DECLARE idUserTemp INT DEFAULT 0;
 
-insert into user(firstname,lastname,password,email) values(inFirstname,inLastname,inPassword,inEmail);
+insert into user(firstname,lastname,password,email,dni,direccion) values(inFirstname,inLastname,inPassword,inEmail,inDni,inDireccion);
 
 select id from user where user.email=inEmail into idUserTemp;
 
@@ -183,7 +192,9 @@ create procedure updateEmployee(
         in  inEmail varchar(100),
         in inAge int,
 		in inGenre varchar(50),
-		in inHealthCondition varchar(200)
+		in inHealthCondition varchar(200),
+        in inDni int,
+        in inDireccion varchar(255)
 )
 begin
 
@@ -192,7 +203,7 @@ DECLARE idUserTemp INT DEFAULT 0;
 select idUser from employee where id=inId into idUserTemp;
 
 update user 
-		set firstname = inFirstname, lastname = inLastname, password = inPassword, email = inEmail 
+		set firstname = inFirstname, lastname = inLastname, password = inPassword, email = inEmail , dni = inDni, direccion = inDireccion
         where id = idUserTemp;
         
 update employee

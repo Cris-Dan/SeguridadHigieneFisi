@@ -5,23 +5,27 @@
  */
 package com.mycompany.models;
 
-
 public abstract class User {
+
     protected Integer idUser;
     protected String firstname;
     protected String lastname;
     protected String password;
     protected String email;
+    protected Integer dni;
+    protected String direccion;
 
     public User() {
     }
 
-    public User(Integer idUser, String firstname, String lastname, String password, String email) {
+    public User(Integer idUser, String firstname, String lastname, String password, String email, Integer dni, String direccion) {
         this.idUser = idUser;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
+        this.dni = dni;
+        this.direccion = direccion;
     }
 
     public Integer getIdUser() {
@@ -63,17 +67,34 @@ public abstract class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Integer getDni() {
+        return dni;
+    }
+
+    public void setDni(Integer dni) {
+        this.dni = dni;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
     
+
     public boolean match(String tipo) {
         return tipo.equalsIgnoreCase("USER");
     }
 
     public User returner(String tipo) {
         if (match(tipo)) {
-            return new User(){};
+            return new User() {
+            };
         } else {
             return null;
         }
     }
 }
-

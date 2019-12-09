@@ -12,8 +12,8 @@ public class Administrator extends User {
     public Administrator() {
     }
 
-    public Administrator(Integer idAdministrator, Integer idPerson, String firstname, String lastname, String password, String email) {
-        super(idPerson, firstname, lastname, password, email);
+    public Administrator(Integer idAdministrator, Integer idUser, String firstname, String lastname, String password, String email, Integer dni, String direccion) {
+        super(idUser, firstname, lastname, password, email, dni, direccion);
         this.idAdministrator = idAdministrator;
     }
 

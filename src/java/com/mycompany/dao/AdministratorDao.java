@@ -39,6 +39,8 @@ public class AdministratorDao implements Dao<Administrator> {
                     administrator.setLastname(rs.getString("lastname"));
                     administrator.setPassword(rs.getString("password"));
                     administrator.setEmail(rs.getString("email"));
+                    administrator.setDni(rs.getInt("dni"));
+                    administrator.setDireccion(rs.getString("direccion"));
                 }
             } catch (SQLException ex) {
             } finally {
@@ -67,6 +69,8 @@ public class AdministratorDao implements Dao<Administrator> {
                     administrator.setLastname(rs.getString("lastname"));
                     administrator.setPassword(rs.getString("password"));
                     administrator.setEmail(rs.getString("email"));
+                    administrator.setDni(rs.getInt("dni"));
+                    administrator.setDireccion(rs.getString("direccion"));
                     lista.add(administrator);
                 }
             } catch (SQLException ex) {
@@ -84,7 +88,7 @@ public class AdministratorDao implements Dao<Administrator> {
     public void save(Administrator t) {
 
         Connection cn = DBAccess.getInstance().getConnection();
-        String pa = "{call saveAdministrator(?,?,?,?)}";
+        String pa = "{call saveAdministrator(?,?,?,?,?,?)}";
         if (cn != null) {
             try {
                 CallableStatement cs = cn.prepareCall(pa);
@@ -92,6 +96,8 @@ public class AdministratorDao implements Dao<Administrator> {
                 cs.setString(2, t.getLastname());
                 cs.setString(3, t.getPassword());
                 cs.setString(4, t.getEmail());
+                cs.setString(5, String.valueOf(t.getDni()));
+                cs.setString(6, t.getDireccion());
                 cs.executeUpdate();
             } catch (SQLException e) {
 
@@ -108,7 +114,7 @@ public class AdministratorDao implements Dao<Administrator> {
     public void update(Administrator t) {
 
         Connection cn = DBAccess.getInstance().getConnection();
-        String pa = "{call updateAdministrator(?,?,?,?,?)}";
+        String pa = "{call updateAdministrator(?,?,?,?,?,?,?)}";
         if (cn != null) {
             try {
                 CallableStatement cs = cn.prepareCall(pa);
@@ -117,6 +123,8 @@ public class AdministratorDao implements Dao<Administrator> {
                 cs.setString(3, t.getLastname());
                 cs.setString(4, t.getPassword());
                 cs.setString(5, t.getEmail());
+                cs.setString(6, String.valueOf(t.getDni()));
+                cs.setString(7, t.getDireccion());
                 cs.executeUpdate();
             } catch (SQLException e) {
                 System.out.println(e);
